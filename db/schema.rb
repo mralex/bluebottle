@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_20_211047) do
+ActiveRecord::Schema.define(version: 2018_08_20_212401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,19 @@ ActiveRecord::Schema.define(version: 2018_08_20_211047) do
     t.index ["name"], name: "index_coffees_on_name", unique: true
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "coffee_id"
+    t.integer "brew_method", default: 1, null: false
+    t.date "ship_at"
+    t.integer "case_count", default: 1, null: false
+    t.integer "packets_per_case", default: 25, null: false
+    t.boolean "is_priority", default: false, null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coffee_id"], name: "index_orders_on_coffee_id"
+    t.index ["is_priority"], name: "index_orders_on_is_priority"
+  end
+
+  add_foreign_key "orders", "coffees"
 end
