@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Coffee.create([
+    { name: 'Bella Donovan'},
+    { name: 'Giant Steps'},
+    { name: 'Night Light Decaf'},
+    { name: 'Panama Finca Santa Teresa Zorra Gesha'},
+    { name: 'Tanzania Mbeya Valley'},
+    { name: 'Three Africas'},
+    { name: 'Yemen Port of Mokha Al-Jabal #42'},
+])
