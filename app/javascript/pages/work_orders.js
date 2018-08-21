@@ -23,22 +23,33 @@ export default class WorkOrders extends React.PureComponent {
     totals: { pages: 0, count: 0 },
     isLoading: true,
 
-    showModal: false
+    showModal: false,
+
+    viewOrder: null,
   };
 
   componentWillMount() {
-    axios.get('/api/orders')
-      .then(({ data: {orders, meta: { total_pages, total_count }}}) => {
+    this.loadOrderPage(1);
+  }
+
+  loadOrderPage(page) {
+    // FIXME: Properly cache each page so we don't have to request it every time.
+    //        Need more time to cleanly resolve cache invalidation (don't we always!),
+    //        so for now we always load the data from the API and move on.
+
+    axios.get(`/api/orders?page=${page}`)
+      .then(({ data: { orders, meta: { total_pages, total_count } } }) => {
         let pageIdMap = {
-          1: orders.map((o) => o.id)
+          [page]: orders.map((o) => o.id)
         };
 
-        let orderMap = {};
+        let orderMap = this.state.orders;
         orders.forEach((o) => orderMap[o.id] = o);
 
         this.setState({
           orders: orderMap,
           pageIdMap,
+          page,
           isLoading: false,
           totals: {
             pages: total_pages,
@@ -46,6 +57,25 @@ export default class WorkOrders extends React.PureComponent {
           }
         });
       });
+  }
+
+  onSaveOrder(order) {
+    if (order.id) {
+      // Update
+    } else {
+      // Create
+    }
+  }
+
+  onViewOrder(id) {
+    this.setState({
+      viewOrder: this.state.orders[id],
+      showModal: true
+    });
+  }
+
+  onChangePage(page) {
+    this.loadOrderPage(page);
   }
 
   ordersForCurrentPage() {
@@ -64,6 +94,8 @@ export default class WorkOrders extends React.PureComponent {
         <OrderModal
           coffees={this.state.coffees}
           onClose={() => this.setState({ showModal: false })}
+          onSave={this.onSaveOrder.bind(this)}
+          order={this.state.viewOrder}
           />
       );
     }
@@ -75,17 +107,18 @@ export default class WorkOrders extends React.PureComponent {
     return (
       <div>
         <Header
-          onCreate={ () => this.setState({ showModal: true }) }
+          onCreate={ () => this.setState({ viewOrder: null, showModal: true }) }
           />
         <Orders
           coffees={coffees}
           orders={this.ordersForCurrentPage()}
           isLoading={isLoading}
+          onViewOrder={this.onViewOrder.bind(this)}
           />
         <Pagination
           page={page}
           totals={totals}
-          onChange={ (page) => this.setState({ page }) }
+          onChange={ this.onChangePage.bind(this) }
           />
         { this.renderModal() }
       </div>
