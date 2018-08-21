@@ -16,7 +16,10 @@ export default class OrderRow extends React.PureComponent {
   coffeeNameForId(id) {
     const { coffees } = this.props;
 
-    return coffees.find((c) => c.id === id).name;
+    // Optimistic updates change the id to a string
+    let testId = parseInt(id, 10);
+
+    return coffees.find((c) => c.id === testId).name;
   }
 
   render() {
