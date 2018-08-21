@@ -73,22 +73,24 @@
 
 Requires Ruby 2.5.1 to be installed, along with a recent version of Postgresql and Node.js.
 
+```
 $ bundle
 $ yarn
 $ rails db:setup # Will create the dev and test dbs, load the schema,
                    and initialize with some test seed data
 
 $ rails s
+```
 
 After it boots up Puma, navigate to http://localhost:3000
 
 ## Testing
 
 Run RSpec tests:
-  $ rspec
+  ``$ rspec``
 
 Run Jest/Enzyme tests:
-  $ npm test
+  ``$ npm test``
 
 
 # Deployment
