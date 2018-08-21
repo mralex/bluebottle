@@ -4,6 +4,9 @@ import moment from 'moment';
 
 import Header from '../components/header';
 import Orders from '../components/orders';
+import OrderModal from '../components/order_modal';
+
+import Pagination from '../components/pagination';
 
 export default class WorkOrders extends React.PureComponent {
   state = {
@@ -54,7 +57,7 @@ export default class WorkOrders extends React.PureComponent {
   }
 
   render() {
-    let { coffees, isLoading } = this.state;
+    let { coffees, isLoading, page, totals } = this.state;
 
     return (
       <div>
@@ -63,6 +66,15 @@ export default class WorkOrders extends React.PureComponent {
           coffees={coffees}
           orders={this.ordersForCurrentPage()}
           isLoading={isLoading} />
+        <Pagination
+          page={page}
+          totals={totals}
+          onFirst={ () => this.setState({ page: 1 }) }
+          onLast={ () => this.setState({ page: totals.count }) }
+
+
+          />
+        {/* <OrderModal coffees={coffees}/> */}
       </div>
     );
   }

@@ -1,3 +1,56 @@
-.orders_header {
-  background: #ccc;
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex: 0;
+
+  background: #f3f3f3;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+
+  margin-right: 20px;
+
+  min-width: 80px;
+  min-height: 70px;
+
+  font-weight: bold;
+
+  .date_container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .date_month {
+    flex: 0;
+    display: block;
+    font-size: 1.1em;
+    text-transform: uppercase;
+  }
+
+  .date_day {
+    flex: 0;
+    display: block;
+    font-size: 2em;
+  }
+}
+
+.title {
+  flex: 1;
+}
+
+.buttons {
+  flex: 0;
+  text-align: right;
+  min-width: 10rem;
 }

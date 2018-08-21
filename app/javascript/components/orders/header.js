@@ -1,26 +1,28 @@
 import React from 'react';
 
+import styles from './style.scss';
+
 const OrdersHeader = (props) => (
-  <div>
-    <div>
+  <div className={`row ${styles.header}`}>
+    <div className="col-3">
       Coffee
     </div>
-    <div>
+    <div className="col-2">
       Method
     </div>
-    <div>
+    <div className="col-1">
       Number of Cases
     </div>
-    <div>
+    <div className="col-1">
       Packets per Case
     </div>
-    <div>
+    <div className="col-2">
       Ship Date
     </div>
-    <div>
+    <div className="col-2">
       Order
     </div>
-    <div>
+    <div className="col-1">
       View
     </div>
   </div>

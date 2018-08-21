@@ -1,0 +1,46 @@
+.orders_wrapper {
+  border: 2px solid #e6e6e6;
+  margin-bottom: 30px;
+}
+
+.orders_title {
+  color: #009BC8;
+  padding: 20px 0px 10px;
+  margin: 0 20px 20px 20px;
+  border-bottom: 1px solid #ccc;
+
+  h3 {
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+}
+
+.orders_grid {
+  font-size: 0.9em;
+}
+
+.header {
+  border-bottom: 2px solid #01A1DD;
+  vertical-align: bottom;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.row {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+
+  &:nth-child(odd) {
+    background: #F3F3F3;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.row, .header {
+  [class^="col"]:first-child {
+    padding-left: 30px;
+  }
+}
