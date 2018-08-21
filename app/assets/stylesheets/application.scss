@@ -14,12 +14,26 @@ input {
   width: 100%;
 }
 
+select, input[type="text"], input[type="number"] {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
 input[type="checkbox"] {
   width: auto;
 }
 
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
 select {
   width: 100%;
+}
+
+.required {
+  color: #f00;
 }
 
 .page-header {
@@ -41,4 +55,8 @@ a {
   border: none;
   color: #fff;
   text-transform: uppercase;
+}
+
+.mb-3 {
+  margin-bottom: 20px;
 }

@@ -95,26 +95,26 @@ export default class OrderModal extends React.PureComponent {
         <div className={styles.modal}>
           <div className={styles.header}>
             <a href="#" onClick={(e) => this.handleClose(e)} className={styles.close}>X</a>
-            <h2>Perfectly Ground Work Orders</h2>
+            <h2 className={styles.title}>Perfectly Ground Work Orders</h2>
             <p>Instructional text would go here</p>
           </div>
-          <div className="row">
+          <div className="row mb-3">
             <div className="col-6">
-              <label>Coffee</label>*<br/>
+              <label>Coffee <span className="required">*</span></label>
               <select name="coffee_id" value={order.coffee_id} onChange={this.onChange.bind(this)}>
                 { this.renderCoffees()}
               </select>
             </div>
             <div className="col-6">
-              <label>Brew Method</label>*<br/>
+              <label>Brew Method <span className="required">*</span></label>
               <select name="brew_method" value={order.brew_method} onChange={this.onChange.bind(this)}>
                 { this.renderBrewMethods()}
               </select>
             </div>
           </div>
-          <div className="row">
+          <div className="row mb-3">
             <div className="col-6">
-              <label>Ship Date</label>*<br />
+              <label>Ship Date <span className="required">*</span></label>
               <DayPickerInput
                 classNames={{
                   container: styles.day_picker_override,
@@ -130,11 +130,11 @@ export default class OrderModal extends React.PureComponent {
                 />
             </div>
             <div className="col-3">
-              <label>Number of Cases</label>*<br />
+              <label>Number of Cases <span className="required">*</span></label>
               <input name="case_count" type="number" value={order.case_count} onChange={this.onChange.bind(this)}/>
             </div>
             <div className="col-3">
-              <label>Packets per Case</label>*<br />
+              <label>Packets per Case <span className="required">*</span></label>
               <select name="packets_pet_case" value={order.packets_per_case} onChange={this.onChange.bind(this)}>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -143,11 +143,15 @@ export default class OrderModal extends React.PureComponent {
           </div>
           <div className="row">
             <div className="col-12">
-              <label>Notes</label><br />
-              <input name="notes" type="text" value={order.notes} onChange={this.onChange.bind(this)}/>
-              <div>
-                <input id="is_priority" name="is_priority" type="checkbox" value={order.is_priority} onChange={this.onChange.bind(this)}/>
-                <label htmlFor="is_priority">Priority</label><br />
+              <div className="mb-3">
+                <label>Notes</label>
+                <input name="notes" type="text" value={order.notes} onChange={this.onChange.bind(this)}/>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="is_priority">
+                  <input id="is_priority" name="is_priority" type="checkbox" checked={order.is_priority} onChange={this.onChange.bind(this)} />
+                  Priority
+                </label>
               </div>
               <button className="btn" onClick={() => this.handleSubmit() }>Submit Work Order</button>
             </div>

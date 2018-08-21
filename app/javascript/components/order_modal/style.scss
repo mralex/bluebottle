@@ -19,12 +19,22 @@
 
 .header {}
 
+.title {
+  margin-top: 0;
+}
+
 .close {
   display: block;
   text-align: right;
+  color: #5F5F5F;
 }
 
 .day_picker_override {
   display: inline-block;
   width: 100%;
+
+  input {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
 }
