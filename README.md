@@ -68,6 +68,11 @@
   data, and it would be a concern in a production environment. But for the sake of making order
   changes, and creating new orders quickly, the data gets reloaded.
 
+* The modal sadly has no error handling. The API response will be a 400, with error strings,
+  but the app will attempt to carry on regardless.
+
+* Order creations occur silently, I considered spending some time adding a notice on completion,
+  but didn't get to it.
 
 # Running the code
 
