@@ -7,6 +7,12 @@ import brewMethodMap from '../../utils/brew_methods';
 
 
 export default class OrderRow extends React.PureComponent {
+  onViewOrder(e) {
+    e.preventDefault();
+
+    this.props.onViewOrder(this.props.order.id);
+  }
+
   coffeeNameForId(id) {
     const { coffees } = this.props;
 
@@ -35,10 +41,10 @@ export default class OrderRow extends React.PureComponent {
           {order.is_priority ? '*' : ''}
         </div>
         <div className="col-2">
-          #{order.id}
+          <a href="#" onClick={this.onViewOrder.bind(this)}>#{order.id}</a>
         </div>
         <div className="col-1">
-          View
+          <a href="#" onClick={this.onViewOrder.bind(this)}>View</a>
         </div>
       </div>
     );
