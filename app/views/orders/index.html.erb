@@ -1,4 +1,9 @@
 
+<div class="app"></div>
+
+
+
+
 <div>
     <% for order in @orders %>
     <div>
@@ -13,7 +18,8 @@
     <% end %>
 </div>
 
+<script>
+window.COFFEES = <%= @coffees.to_json.html_safe %>;
+</script>
 
-<div class="app"></div>
-
-<%= javascript_pack_tag "work_orders" %>
+<%= javascript_pack_tag "app" %>
