@@ -10,6 +10,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page">
+      <header>
+        <%= link_to orders_path do %>
+          <%= image_tag  "logo.png" %>
+        <% end %>
+      </header>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

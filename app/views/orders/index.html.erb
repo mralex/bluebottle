@@ -1,0 +1,19 @@
+
+<div>
+    <% for order in @orders %>
+    <div>
+        <%= order.coffee.name %><br>
+        <%= order.brew_method %><br>
+        <%= order.case_count %><br>
+        <%= order.packets_per_case %><br>
+        <%= order.ship_at.strftime('%m/%d/%Y') %><br>
+        #<%= order.id %><br>
+        <hr>
+    </div>
+    <% end %>
+</div>
+
+
+<div class="app"></div>
+
+<%= javascript_pack_tag "work_orders" %>
