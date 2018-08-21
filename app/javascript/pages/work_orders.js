@@ -26,10 +26,22 @@ export default class WorkOrders extends React.PureComponent {
     showModal: false,
 
     viewOrder: null,
+
+    csrfToken: document.querySelector("meta[name=csrf-token]").content,
   };
 
   componentWillMount() {
     this.loadOrderPage(1);
+  }
+
+  ordersForCurrentPage() {
+    let orderIds = this.state.pageIdMap[this.state.page];
+
+    if (!orderIds) {
+      return [];
+    }
+
+    return orderIds.map((id) => this.state.orders[id]);
   }
 
   loadOrderPage(page) {
@@ -59,11 +71,41 @@ export default class WorkOrders extends React.PureComponent {
       });
   }
 
+  updateOrder(order) {
+    let { orders } = this.state;
+
+    orders[order.id] = order;
+    this.setState({ orders: { ...orders } });
+  }
+
   onSaveOrder(order) {
+    let method = 'post';
+    let url = '/api/orders';
+
     if (order.id) {
       // Update
-    } else {
-      // Create
+      method = 'put';
+      url = `/api/orders/${order.id}`;
+    }
+
+    axios({
+      method,
+      url,
+      data: order,
+      headers: {
+        'X-CSRF-Token': this.state.csrfToken
+      }
+    }).then(({ data: { order } }) => {
+      if (method === 'post') {
+        this.loadOrderPage(1);
+      } else {
+        this.updateOrder(order);
+      }
+    });
+
+    // Optimistically update the order ahead of api
+    if (order.id) {
+      this.updateOrder(order);
     }
   }
 
@@ -76,16 +118,6 @@ export default class WorkOrders extends React.PureComponent {
 
   onChangePage(page) {
     this.loadOrderPage(page);
-  }
-
-  ordersForCurrentPage() {
-    let orderIds = this.state.pageIdMap[this.state.page];
-
-    if (!orderIds) {
-      return [];
-    }
-
-    return orderIds.map((id) => this.state.orders[id]);
   }
 
   renderModal() {

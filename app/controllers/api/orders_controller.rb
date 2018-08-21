@@ -30,7 +30,7 @@ class Api::OrdersController < ApplicationController
       return
     end
 
-    head 201
+    render json: @order
   rescue ArgumentError => e
     render json: { error: e.to_s }, status: 400
   end
