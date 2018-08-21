@@ -1,16 +1,26 @@
 import React from 'react';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+
+import {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment';
+
 import moment from 'moment';
+
 import styles from './style.scss';
+import 'react-day-picker/lib/style.css';
 
 import brewMethodMap from '../../utils/brew_methods';
 
 
 export default class OrderModal extends React.PureComponent {
   state = {
+    displayShipDate: moment().format('MM/DD/YYYY'),
     order: {
       coffee_id: 0,
       brew_method: 'aeropress',
-      ship_at: moment().format('MM/DD/YYYY'),
+      ship_at: moment().format('YYYY-MM-DD'),
       case_count: 10,
       packets_per_case: 25,
       is_priority: false,
@@ -21,7 +31,8 @@ export default class OrderModal extends React.PureComponent {
   componentWillMount() {
     if (this.props.order) {
       this.setState({
-        order: {...this.props.order}
+        order: {...this.props.order},
+        displayShipDate: moment(this.props.order.ship_at).format('MM/DD/YYYY')
       });
     } else {
       let { order } = this.state;
@@ -38,6 +49,15 @@ export default class OrderModal extends React.PureComponent {
       order: {
         ...this.state.order,
         [name]: value
+      }
+    });
+  }
+
+  onDayChange(day) {
+    this.setState({
+      order: {
+        ...this.state.order,
+        'ship_at': moment(day).format('YYYY-MM-DD')
       }
     });
   }
@@ -64,7 +84,7 @@ export default class OrderModal extends React.PureComponent {
   }
 
   render() {
-    let { order } = this.state;
+    let { order, displayShipDate } = this.state;
 
     return (
       <div className={styles.wrapper}>
@@ -91,7 +111,19 @@ export default class OrderModal extends React.PureComponent {
           <div className="row">
             <div className="col-6">
               <label>Ship Date</label>*<br />
-              <input name="ship_at" type="text" value={order.ship_at} onChange={this.onChange.bind(this)}/>
+              <DayPickerInput
+                classNames={{
+                  container: styles.day_picker_override,
+                  overlayWrapper: 'DayPickerInput-OverlayWrapper',
+                  overlay: 'DayPickerInput-Overlay'
+                }}
+                value={displayShipDate}
+                onDayChange={this.onDayChange.bind(this)}
+                format='MM/DD/YYYY'
+                formatDate={formatDate}
+                parseDate={parseDate}
+                placeholder={`${formatDate(new Date())}`}
+                />
             </div>
             <div className="col-3">
               <label>Number of Cases</label>*<br />

@@ -9,6 +9,7 @@
     "postcss-smart-import": "^0.7.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-day-picker": "^7.1.10",
     "react-dom": "^16.4.2",
     "webpack-merge": "^4.1.4"
   },
