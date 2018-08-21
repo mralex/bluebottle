@@ -29,6 +29,8 @@ export default class OrderModal extends React.PureComponent {
   };
 
   componentWillMount() {
+    this.datePickerRef = React.createRef();
+
     if (this.props.order) {
       this.setState({
         order: {...this.props.order},
@@ -117,19 +119,25 @@ export default class OrderModal extends React.PureComponent {
           <div className="row mb-3">
             <div className="col-6">
               <label>Ship Date <span className="required">*</span></label>
-              <DayPickerInput
-                classNames={{
-                  container: styles.day_picker_override,
-                  overlayWrapper: 'DayPickerInput-OverlayWrapper',
-                  overlay: 'DayPickerInput-Overlay'
-                }}
-                value={displayShipDate}
-                onDayChange={this.onDayChange.bind(this)}
-                format='MM/DD/YYYY'
-                formatDate={formatDate}
-                parseDate={parseDate}
-                placeholder={`${formatDate(new Date())}`}
-                />
+              <div className={styles.date_wrapper}>
+                <DayPickerInput
+                  ref={this.datePickerRef}
+                  classNames={{
+                    container: styles.day_picker_override,
+                    overlayWrapper: 'DayPickerInput-OverlayWrapper',
+                    overlay: 'DayPickerInput-Overlay'
+                  }}
+                  value={displayShipDate}
+                  onDayChange={this.onDayChange.bind(this)}
+                  format='MM/DD/YYYY'
+                  formatDate={formatDate}
+                  parseDate={parseDate}
+                  placeholder={`${formatDate(new Date())}`}
+                  />
+                <div className={styles.date_wrapper_icon} onClick={() => this.datePickerRef.current.showDayPicker() }>
+                  <i className="fas fa-calendar-alt" />
+                </div>
+              </div>
             </div>
             <div className="col-3">
               <label>Number of Cases <span className="required">*</span></label>

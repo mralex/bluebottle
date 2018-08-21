@@ -20,6 +20,11 @@ select, input[type="text"], input[type="number"] {
   border: 1px solid #ccc;
 }
 
+input[type="text"], input[type="number"] {
+  padding-top: 6px;
+  padding-bottom: 7px;
+}
+
 input[type="checkbox"] {
   width: auto;
 }
