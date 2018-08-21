@@ -19,7 +19,7 @@
 ## Frontend
 
 * The app runs as a Single Page App, with a smart component maintaining all of the application
-  state (app/javascript/pages/work_orders). This component coordinates page loading, data
+  state (`app/javascript/pages/work_orders`). This component coordinates page loading, data
   loading/saving, via callbacks from the other components.
 
 * The order modal leverages ReactDayPicker for date picking.
@@ -63,7 +63,7 @@
   as integers in the table, migrating to a foreign key relationship later wouldn't be too
   much work.
 
-* For the interests of time, the core WorkOrders React component will request fresh API data
+* For the interests of time, the core `WorkOrders` React component will request fresh API data
   every time the user clicks on the pagination buttons. The code is angled toward caching that
   data, and it would be a concern in a production environment. But for the sake of making order
   changes, and creating new orders quickly, the data gets reloaded.
