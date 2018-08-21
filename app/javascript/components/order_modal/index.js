@@ -2,6 +2,9 @@ import React from 'react';
 
 import styles from './style.scss';
 
+import brewMethodMap from '../../utils/brew_methods';
+
+
 export default class OrderModal extends React.PureComponent {
   renderCoffees() {
     const { coffees } = this.props;
@@ -10,15 +13,7 @@ export default class OrderModal extends React.PureComponent {
   }
 
   renderBrewMethods() {
-    return (
-      <React.Fragment>
-        <option value="aeropress">Aeropress</option>
-        <option value="coffee_maker">Coffee Maker</option>
-        <option value="cold_brew">Cold Brew</option>
-        <option value="french_press">French Press</option>
-        <option value="pour_over">Pour Over</option>
-      </React.Fragment>
-    );
+    return Object.keys(brewMethodMap).map((m) => <option key={m} value={m}>{brewMethodMap[m]}</option>);
   }
 
   render() {

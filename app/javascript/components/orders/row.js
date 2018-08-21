@@ -3,6 +3,8 @@ import moment from 'moment';
 
 import styles from './style.scss';
 
+import brewMethodMap from '../../utils/brew_methods';
+
 
 export default class OrderRow extends React.PureComponent {
   coffeeNameForId(id) {
@@ -20,7 +22,7 @@ export default class OrderRow extends React.PureComponent {
           {this.coffeeNameForId(order.coffee_id)}
         </div>
         <div className="col-2">
-          {order.brew_method}
+          {brewMethodMap[order.brew_method]}
         </div>
         <div className="col-1">
           {order.case_count}

@@ -74,7 +74,7 @@ export default class WorkOrders extends React.PureComponent {
 
 
           />
-        {/* <OrderModal coffees={coffees}/> */}
+        <OrderModal coffees={coffees}/>
       </div>
     );
   }
