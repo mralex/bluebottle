@@ -145,7 +145,7 @@ export default class OrderModal extends React.PureComponent {
             </div>
             <div className="col-3">
               <label>Packets per Case <span className="required">*</span></label>
-              <select name="packets_pet_case" value={order.packets_per_case} onChange={this.onChange.bind(this)}>
+              <select name="packets_per_case" value={order.packets_per_case} onChange={this.onChange.bind(this)}>
                 <option value="25">25</option>
                 <option value="50">50</option>
               </select>
