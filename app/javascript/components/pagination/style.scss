@@ -10,7 +10,7 @@
     border: 1px solid #ccc;
     border-left: none;
     padding: 10px;
-    color: #333;
+    color: $brand-color;
 
     &:hover {
       background: lighten($brand-color, 50);
@@ -23,6 +23,9 @@
     &.selected {
       background: $brand-color;
       color: #fff;
+    }
+    &.disabled {
+      color: #ccc;
     }
   }
 }

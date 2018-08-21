@@ -31,30 +31,46 @@ export default class Pagination extends React.PureComponent {
 
   renderPrev() {
     let { page } = this.props;
-
     let nextPage = Math.max(1, page - 1);
+    let className = '';
 
-    return <button onClick={() => this.props.onChange(nextPage)}>Prev</button>
+    if (page === 1) {
+      className = styles.disabled;
+    }
+
+    return <button className={className} onClick={() => this.props.onChange(nextPage)}>Prev</button>
   }
 
   renderNext() {
     let { page, totals } = this.props;
-
     let nextPage = Math.min(totals.pages, page + 1);
+    let className = '';
 
-    return <button onClick={() => this.props.onChange(nextPage)}>Next</button>
+    if (page === totals.pages) {
+      className = styles.disabled;
+    }
+
+    return <button className={className} onClick={() => this.props.onChange(nextPage)}>Next</button>
   }
 
   render() {
     const { totals, page } = this.props;
+    let firstClassName = '';
+    let lastClassName = '';
+
+    if (page === 1) {
+      firstClassName = styles.disabled;
+    } else if (page === totals.pages) {
+      lastClassName = styles.disabled;
+    }
 
     return (
       <nav className={styles.pagination}>
-        <button onClick={() => this.props.onChange(1)}>&laquo;</button>
+        <button className={firstClassName} onClick={() => this.props.onChange(1)}>&laquo;</button>
         { this.renderPrev() }
         { this.renderPages() }
         { this.renderNext() }
-        <button onClick={() => this.props.onChange(totals.pages)}>&raquo;</button>
+        <button className={lastClassName} onClick={() => this.props.onChange(totals.pages)}>&raquo;</button>
       </nav>
     );
   }
