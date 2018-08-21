@@ -16,13 +16,23 @@ export default class OrderModal extends React.PureComponent {
     return Object.keys(brewMethodMap).map((m) => <option key={m} value={m}>{brewMethodMap[m]}</option>);
   }
 
+  handleSubmit() {
+    this.props.onClose();
+  }
+
+  handleClose(e) {
+    e.preventDefault();
+
+    this.props.onClose();
+  }
+
   render() {
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.modal}>
           <div className={styles.header}>
-            <a href="#" className={styles.close}>X</a>
+            <a href="#" onClick={(e) => this.handleClose(e)} className={styles.close}>X</a>
             <h2>Perfectly Ground Work Orders</h2>
             <p>Instructional text would go here</p>
           </div>
@@ -65,7 +75,7 @@ export default class OrderModal extends React.PureComponent {
             <input type="checkbox" />
             <label>Priority</label><br />
           </div>
-          <button className="btn">Submit Work Order</button>
+          <button className="btn" onClick={() => this.handleSubmit() }>Submit Work Order</button>
         </div>
       </div>
     )

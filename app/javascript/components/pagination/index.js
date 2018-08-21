@@ -20,7 +20,7 @@ export default class Pagination extends React.PureComponent {
         <button
           key={`page-${i}`}
           className={className}
-          onClick={ () => this.props.onPage(i) }>
+          onClick={ () => this.props.onChange(i) }>
           { i }
         </button>
       );
@@ -29,16 +29,32 @@ export default class Pagination extends React.PureComponent {
     return pages;
   }
 
+  renderPrev() {
+    let { page } = this.props;
+
+    let nextPage = Math.max(1, page - 1);
+
+    return <button onClick={() => this.props.onChange(nextPage)}>Prev</button>
+  }
+
+  renderNext() {
+    let { page, totals } = this.props;
+
+    let nextPage = Math.min(totals.pages, page + 1);
+
+    return <button onClick={() => this.props.onChange(nextPage)}>Next</button>
+  }
+
   render() {
     const { totals, page } = this.props;
 
     return (
       <nav className={styles.pagination}>
-        <button onClick={this.props.onFirst}>&laquo;</button>
-        <button onClick={this.props.onPrev}>Prev</button>
+        <button onClick={() => this.props.onChange(1)}>&laquo;</button>
+        { this.renderPrev() }
         { this.renderPages() }
-        <button onClick={this.props.onNext}>Next</button>
-        <button onClick={this.props.onLast}>&raquo;</button>
+        { this.renderNext() }
+        <button onClick={() => this.props.onChange(totals.pages)}>&raquo;</button>
       </nav>
     );
   }

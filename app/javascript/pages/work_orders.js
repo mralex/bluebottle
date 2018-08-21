@@ -21,7 +21,9 @@ export default class WorkOrders extends React.PureComponent {
     page: 1,
 
     totals: { pages: 0, count: 0 },
-    isLoading: true
+    isLoading: true,
+
+    showModal: false
   };
 
   componentWillMount() {
@@ -56,25 +58,36 @@ export default class WorkOrders extends React.PureComponent {
     return orderIds.map((id) => this.state.orders[id]);
   }
 
+  renderModal() {
+    if (this.state.showModal) {
+      return (
+        <OrderModal
+          coffees={this.state.coffees}
+          onClose={() => this.setState({ showModal: false })}
+          />
+      );
+    }
+  }
+
   render() {
     let { coffees, isLoading, page, totals } = this.state;
 
     return (
       <div>
-        <Header onCreate={ () => console.log('click') }/>
+        <Header
+          onCreate={ () => this.setState({ showModal: true }) }
+          />
         <Orders
           coffees={coffees}
           orders={this.ordersForCurrentPage()}
-          isLoading={isLoading} />
+          isLoading={isLoading}
+          />
         <Pagination
           page={page}
           totals={totals}
-          onFirst={ () => this.setState({ page: 1 }) }
-          onLast={ () => this.setState({ page: totals.count }) }
-
-
+          onChange={ (page) => this.setState({ page }) }
           />
-        <OrderModal coffees={coffees}/>
+        { this.renderModal() }
       </div>
     );
   }
