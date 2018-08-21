@@ -14,6 +14,8 @@
 * A simple API at `/api/orders` gives the React app access to CRUD actions on work orders.
   The API is paginated via the Kaminari gem; and sanitized using ActiveModelSerializers.
 
+* API tests written in RSpec.
+
 ## Frontend
 
 * The app runs as a Single Page App, with a smart component maintaining all of the application
@@ -37,8 +39,23 @@
   Standard CSS classes from the global `application.css` can still be used as necessary for
   generic styles (i.e., `.btn`, the grid, etc).
 
+* A few Jest/Enzyme tests for example purposes. While not super familiar with using Jest/Enzyme,
+  I did manage to get it setup and working for a couple components in the app. Given more time,
+  I'd add more test coverage.
 
 # Trade offs
+
+* I went back and forth about having the SPA/API structure, or a more classic Rails view
+  structure with React sprinkled in. Normally I'd err on the side of the classic approach,
+  as it tends to enable faster, iterative, development with direct calls to the DB, and
+  allows for future refactoring into richer React pages later on once the app is understood.
+
+  In this case, as the project is a demonstation of using Rails and React, I felt taking the
+  API driven route was OK, certainly as the list page desired tighter integration with React
+  to view orders in more detail.
+
+  For a bigger app I'd introduce React-Router, and Redux as needed. It would be better if
+  pagination actually updated the URL, and React-Router would make that a pretty simple task.
 
 * The brew method is stored as an enum in the model, which gives us a nice way to access
   the information. This could have been stored as a reference to another table, but at
@@ -48,11 +65,8 @@
 
 * For the interests of time, the core WorkOrders React component will request fresh API data
   every time the user clicks on the pagination buttons. The code is angled toward caching that
-  data, and would be a concern in a production environment, but for the sake of making order
+  data, and it would be a concern in a production environment. But for the sake of making order
   changes, and creating new orders quickly, the data gets reloaded.
-
-* While not super familiar with using Jest/Enzyme, I did manage to get it setup and working
-  for a couple components in the app. Given more time, I'd add more test coverage.
 
 
 # Running the code

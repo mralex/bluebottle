@@ -45,14 +45,14 @@ RSpec.describe Api::OrdersController, type: :controller do
   end
 
   describe 'updating orders' do
-    it 'returns a 201 on a successful order update' do
+    it 'returns a 200 on a successful order update' do
       params = {
         coffee_id: @coffee2.id
       }
 
       put :update, params: { id: @order.id, order: params }
 
-      should respond_with 201
+      should respond_with 200
     end
 
     it 'returns a 400 on a successful order update' do
