@@ -8,7 +8,7 @@
 .orders_title {
   color: #009BC8;
   padding: 20px 0px 10px;
-  margin: 0 20px 20px 20px;
+  margin: 0 20px;
   border-bottom: 1px solid #ccc;
 
   h3 {
@@ -22,10 +22,22 @@
 }
 
 .header {
+  display: flex;
   border-bottom: 2px solid $brand-color;
-  vertical-align: bottom;
   margin-bottom: 10px;
   font-weight: bold;
+}
+
+.header_cell {
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  h4 {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+  }
 }
 
 .row {
