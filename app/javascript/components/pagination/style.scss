@@ -1,19 +1,27 @@
+@import "../../../assets/stylesheets/_constants";
+
+
 .pagination {
   text-align: center;
 
   button {
+    cursor: pointer;
     background: #fff;
     border: 1px solid #ccc;
     border-left: none;
     padding: 10px;
     color: #333;
 
+    &:hover {
+      background: lighten($brand-color, 50);
+    }
+
     &:first-child {
       border-left: 1px solid #ccc;
     }
 
     &.selected {
-      background: #01A1DD;
+      background: $brand-color;
       color: #fff;
     }
   }
