@@ -1,0 +1,20 @@
+.pagination {
+  text-align: center;
+
+  button {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-left: none;
+    padding: 10px;
+    color: #333;
+
+    &:first-child {
+      border-left: 1px solid #ccc;
+    }
+
+    &.selected {
+      background: #01A1DD;
+      color: #fff;
+    }
+  }
+}
