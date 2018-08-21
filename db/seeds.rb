@@ -7,12 +7,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Coffee.create([
-    { name: 'Bella Donovan'},
-    { name: 'Giant Steps'},
-    { name: 'Night Light Decaf'},
-    { name: 'Panama Finca Santa Teresa Zorra Gesha'},
-    { name: 'Tanzania Mbeya Valley'},
-    { name: 'Three Africas'},
-    { name: 'Yemen Port of Mokha Al-Jabal #42'},
-])
+if Coffee.count == 0
+    Coffee.create([
+        { name: 'Bella Donovan'},
+        { name: 'Giant Steps'},
+        { name: 'Night Light Decaf'},
+        { name: 'Panama Finca Santa Teresa Zorra Gesha'},
+        { name: 'Tanzania Mbeya Valley'},
+        { name: 'Three Africas'},
+        { name: 'Yemen Port of Mokha Al-Jabal #42'},
+    ])
+end
+
+coffees = Coffee.count
+
+for i in 0...100
+    Order.create(
+       coffee_id: Faker::Number.between(1, coffees),
+       brew_method: Faker::Number.between(0, 4),
+       ship_at: Faker::Date.forward(90),
+       case_count: Faker::Number.between(1, 20),
+       packets_per_case: [25, 50].sample,
+       is_priority: [false, false, false, true].sample,
+       notes: ['', '', '', Faker::Coffee.notes].sample
+    )
+end
