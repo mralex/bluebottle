@@ -41,13 +41,13 @@ export default class OrderRow extends React.PureComponent {
         </div>
         <div className="col-2">
           {moment(order.ship_at).format('MM/DD/YYYY')}
-          {order.is_priority ? '*' : ''}
+          {order.is_priority ? <i className="fas fa-star" /> : ''}
         </div>
         <div className="col-2">
           <a href="#" onClick={this.onViewOrder.bind(this)}>#{order.id}</a>
         </div>
         <div className="col-1">
-          <a href="#" onClick={this.onViewOrder.bind(this)}>View</a>
+          <a href="#" onClick={this.onViewOrder.bind(this)}><i className="fas fa-eye"/></a>
         </div>
       </div>
     );

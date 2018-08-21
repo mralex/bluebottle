@@ -94,7 +94,9 @@ export default class OrderModal extends React.PureComponent {
       <div className={styles.wrapper}>
         <div className={styles.modal}>
           <div className={styles.header}>
-            <a href="#" onClick={(e) => this.handleClose(e)} className={styles.close}>X</a>
+            <a href="#" onClick={(e) => this.handleClose(e)} className={styles.close}>
+              <i className="fas fa-times" />
+            </a>
             <h2 className={styles.title}>Perfectly Ground Work Orders</h2>
             <p>Instructional text would go here</p>
           </div>
