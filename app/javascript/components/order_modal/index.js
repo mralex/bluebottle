@@ -45,6 +45,10 @@ export default class OrderModal extends React.PureComponent {
   onChange(e) {
     let { name, value } = e.target;
 
+    if (name === 'is_priority') {
+      value = e.target.checked;
+    }
+
     this.setState({
       order: {
         ...this.state.order,
@@ -142,14 +146,14 @@ export default class OrderModal extends React.PureComponent {
               <label>Notes</label><br />
               <input name="notes" type="text" value={order.notes} onChange={this.onChange.bind(this)}/>
               <div>
-                <input name="is_priority" type="checkbox" value={order.is_priority} onChange={this.onChange.bind(this)}/>
-                <label>Priority</label><br />
+                <input id="is_priority" name="is_priority" type="checkbox" value={order.is_priority} onChange={this.onChange.bind(this)}/>
+                <label htmlFor="is_priority">Priority</label><br />
               </div>
               <button className="btn" onClick={() => this.handleSubmit() }>Submit Work Order</button>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
