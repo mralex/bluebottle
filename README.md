@@ -68,6 +68,9 @@
   data, and it would be a concern in a production environment. But for the sake of making order
   changes, and creating new orders quickly, the data gets reloaded.
 
+* Spec didn't call for a responsive layout, the CSS grid system in use does its best to
+  be responsive though!
+
 * The modal sadly has no error handling. The API response will be a 400, with error strings,
   but the app will attempt to carry on regardless.
 

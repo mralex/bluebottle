@@ -30,8 +30,8 @@ export default class Pagination extends React.PureComponent {
   }
 
   renderPrev() {
-    let { page } = this.props;
-    let nextPage = Math.max(1, page - 1);
+    const { page } = this.props;
+    const nextPage = Math.max(1, page - 1);
     let className = '';
 
     if (page === 1) {
@@ -42,8 +42,8 @@ export default class Pagination extends React.PureComponent {
   }
 
   renderNext() {
-    let { page, totals } = this.props;
-    let nextPage = Math.min(totals.pages, page + 1);
+    const { page, totals } = this.props;
+    const nextPage = Math.min(totals.pages, page + 1);
     let className = '';
 
     if (page === totals.pages) {

@@ -4,7 +4,7 @@ import moment from 'moment';
 import styles from './style.scss';
 
 function renderDate() {
-  let today = moment();
+  const today = moment();
 
   return (
     <span className={styles.date_container}>

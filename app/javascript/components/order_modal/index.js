@@ -90,7 +90,7 @@ export default class OrderModal extends React.PureComponent {
   }
 
   render() {
-    let { order, displayShipDate } = this.state;
+    const { order, displayShipDate } = this.state;
 
     return (
       <div className={styles.wrapper}>

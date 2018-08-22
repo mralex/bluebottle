@@ -35,7 +35,7 @@ export default class WorkOrders extends React.PureComponent {
   }
 
   ordersForCurrentPage() {
-    let orderIds = this.state.pageIdMap[this.state.page];
+    const orderIds = this.state.pageIdMap[this.state.page];
 
     if (!orderIds) {
       return [];
@@ -72,7 +72,7 @@ export default class WorkOrders extends React.PureComponent {
   }
 
   updateOrder(order) {
-    let { orders } = this.state;
+    const { orders } = this.state;
 
     orders[order.id] = order;
     this.setState({ orders: { ...orders } });
@@ -134,7 +134,7 @@ export default class WorkOrders extends React.PureComponent {
   }
 
   render() {
-    let { coffees, isLoading, page, totals } = this.state;
+    const { coffees, isLoading, page, totals } = this.state;
 
     return (
       <div>
