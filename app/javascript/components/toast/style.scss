@@ -1,0 +1,27 @@
+@import "../../../assets/stylesheets/_constants";
+
+.toast {
+  padding: 10px;
+
+  margin: 20px 0;
+
+  border: 1px solid;
+
+  display: flex;
+
+  .body {
+    flex: 1;
+  }
+
+  .close {
+    flex: 0;
+    padding: 0 10px;
+  }
+}
+
+.notice {
+  border-color: darken($brand-color, 2);
+  background: lighten($brand-color, 50);
+}
+
+

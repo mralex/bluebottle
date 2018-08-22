@@ -7,6 +7,7 @@ import Orders from '../components/orders';
 import OrderModal from '../components/order_modal';
 
 import Pagination from '../components/pagination';
+import Toast from '../components/toast';
 
 export default class WorkOrders extends React.PureComponent {
   state = {
@@ -28,6 +29,8 @@ export default class WorkOrders extends React.PureComponent {
     viewOrder: null,
 
     csrfToken: document.querySelector("meta[name=csrf-token]").content,
+
+    toastMsg: '',
   };
 
   componentWillMount() {
@@ -98,8 +101,14 @@ export default class WorkOrders extends React.PureComponent {
     }).then(({ data: { order } }) => {
       if (method === 'post') {
         this.loadOrderPage(1);
+        this.setState({
+          toastMsg: 'Work order created.'
+        });
       } else {
         this.updateOrder(order);
+        this.setState({
+          toastMsg: 'Work order updated.'
+        });
       }
     });
 
@@ -133,6 +142,20 @@ export default class WorkOrders extends React.PureComponent {
     }
   }
 
+  renderToast() {
+    const { toastMsg } = this.state;
+
+    if (!toastMsg || toastMsg === '') {
+      return;
+    }
+
+    return (
+      <Toast type="notice" onClose={() => this.setState({ toastMsg: '' }) }>
+        { toastMsg }
+      </Toast>
+    );
+  }
+
   render() {
     const { coffees, isLoading, page, totals } = this.state;
 
@@ -141,6 +164,7 @@ export default class WorkOrders extends React.PureComponent {
         <Header
           onCreate={ () => this.setState({ viewOrder: null, showModal: true }) }
           />
+        { this.renderToast() }
         <Orders
           coffees={coffees}
           orders={this.ordersForCurrentPage()}
